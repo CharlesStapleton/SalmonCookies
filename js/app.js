@@ -27,6 +27,17 @@ var firstAndPike = {
       document.getElementById('firstAndPike').innerHTML = timesList;
     }
   },
+
+  arrayTotal: function(total, num) {
+    return total + num;
+  },
+
+  getArrayTotal: function() {
+    var node = document.createElement('LI');
+    var textNode = document.createTextNode('Total: ' + this.cookiesPurchased.reduce(this.arrayTotal) + ' cookies');
+    node.appendChild(textNode);
+    document.getElementById('firstAndPike').appendChild(node);
+  }
 };
 
 var seaTacAirport = {
@@ -49,6 +60,17 @@ var seaTacAirport = {
       document.getElementById('seaTacAirport').innerHTML = timesList2;
     }
   },
+
+  arrayTotal: function(total, num) {
+    return total + num;
+  },
+
+  getArrayTotal: function() {
+    var node = document.createElement('LI');
+    var textNode = document.createTextNode('Total: ' + this.cookiesPurchased.reduce(this.arrayTotal) + ' cookies');
+    node.appendChild(textNode);
+    document.getElementById('seaTacAirport').appendChild(node);
+  }
 };
 
 var seattleCenter = {
@@ -71,6 +93,17 @@ var seattleCenter = {
       document.getElementById('seattleCenter').innerHTML = timesList3;
     }
   },
+
+  arrayTotal: function(total, num) {
+    return total + num;
+  },
+
+  getArrayTotal: function() {
+    var node = document.createElement('LI');
+    var textNode = document.createTextNode('Total: ' + this.cookiesPurchased.reduce(this.arrayTotal) + ' cookies');
+    node.appendChild(textNode);
+    document.getElementById('seattleCenter').appendChild(node);
+  }
 };
 
 var capitolHill = {
@@ -93,6 +126,17 @@ var capitolHill = {
       document.getElementById('capitolHill').innerHTML = timesList4;
     }
   },
+
+  arrayTotal: function(total, num) {
+    return total + num;
+  },
+
+  getArrayTotal: function() {
+    var node = document.createElement('LI');
+    var textNode = document.createTextNode('Total: ' + this.cookiesPurchased.reduce(this.arrayTotal) + ' cookies');
+    node.appendChild(textNode);
+    document.getElementById('capitolHill').appendChild(node);
+  }
 };
 
 var alki = {
@@ -115,10 +159,30 @@ var alki = {
       document.getElementById('alki').innerHTML = timesList5;
     }
   },
+
+  arrayTotal: function(total, num) {
+    return total + num;
+  },
+
+  getArrayTotal: function() {
+    var node = document.createElement('LI');
+    var textNode = document.createTextNode('Total: ' + this.cookiesPurchased.reduce(this.arrayTotal) + ' cookies');
+    node.appendChild(textNode);
+    document.getElementById('alki').appendChild(node);
+  }
 };
 
 firstAndPike.render();
+firstAndPike.getArrayTotal();
+
 seaTacAirport.render();
+seaTacAirport.getArrayTotal();
+
 seattleCenter.render();
+seattleCenter.getArrayTotal();
+
 capitolHill.render();
+capitolHill.getArrayTotal();
+
 alki.render();
+alki.getArrayTotal();
