@@ -21,9 +21,7 @@ CookieStore.prototype.calcCookiesPerHour = function() {
 CookieStore.prototype.calcCookies = function () {
   for (var i = 0; i < this.hoursOpen; i++) {
     var results = this.calcCookiesPerHour();
-    console.log(results);
     this.cookiesPurchased.push(results);
-    console.log(this.cookiesPurchased);
     this.totalSales += results;
   }
 };
@@ -35,7 +33,7 @@ var renderTableHeader = function () {
   var tableHeaderElement = document.createElement('tr');
   tableRowElement.appendChild(tableHeaderElement);
 
-  for (var i = 0; i < hoursArray.length + 1; i++) {
+  for (var i = 0; i < hoursArray.length; i++) {
     tableHeaderElement = document.createElement('th');
     tableHeaderElement.textContent = hoursArray[i];
     tableRowElement.appendChild(tableHeaderElement);
@@ -55,8 +53,6 @@ CookieStore.prototype.renderTable = function() {
 
   var tableDataElement = document.createElement('td');
 
-  console.log(this.cookiesPurchased);
-
   for (var i in this.cookiesPurchased) {
     tableDataElement = document.createElement('td');
     tableDataElement.textContent = this.cookiesPurchased[i];
@@ -68,6 +64,42 @@ CookieStore.prototype.renderTable = function() {
   tableRowElement.appendChild(tableDataElement);
 
   cookieTableElement.appendChild(tableRowElement);
+};
+
+var renderTableFooter = function() {
+  var totalTotal = 0;
+  var cookiesTotalArray = [];
+
+  var tableFooterElement = document.getElementById('tableFooter');
+
+  var tableHeaderElement = document.createElement('th');
+  tableHeaderElement.textContent = 'Totals';
+  tableFooterElement.appendChild(tableHeaderElement);
+
+  var tableDataElement = document.createElement('td');
+
+  for (var i = 0; i < 14; i++) {
+    var cookiesTotal = 0;
+
+    for (var x = 0; x < allStores.length; x++) {
+      cookiesTotal = allStores[x].cookiesPurchased[i] + cookiesTotal;
+    }
+
+    tableDataElement = document.createElement('td');
+    tableDataElement.textContent = cookiesTotal;
+    tableFooterElement.appendChild(tableDataElement);
+
+    cookiesTotalArray.push(cookiesTotal);
+  }
+
+  for (var k = 0; k < 14; k++) {
+    totalTotal += cookiesTotalArray[k];
+    console.log(totalTotal);
+  }
+
+  tableDataElement = document.createElement('td');
+  tableDataElement.textContent = totalTotal;
+  tableFooterElement.appendChild(tableDataElement);
 };
 
 var firstAndPike = new CookieStore('1st and Pike', 23, 65, 6.3, this.hoursArray.length - 1);
@@ -89,3 +121,5 @@ seaTacAirport.renderTable();
 seattleCenter.renderTable();
 capitolHill.renderTable();
 alki.renderTable();
+
+renderTableFooter();
