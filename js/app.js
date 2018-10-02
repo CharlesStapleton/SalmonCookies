@@ -4,7 +4,6 @@ var storeForm = document.getElementById('storeForm');
 var hoursArray = ['6am', '7am', '8am', '9am', '10am', '11am', '12pm', '1pm', '2pm', '3pm', '4pm', '5pm', '6pm', '7pm', 'Total'];
 var allStores = [];
 
-
 var CookieStore = function (name, minCustomers, maxCustomers, avgCookiePerCustomer, hoursOfOperation) {
   this.name = name;
   this.min = minCustomers;
@@ -16,19 +15,6 @@ var CookieStore = function (name, minCustomers, maxCustomers, avgCookiePerCustom
   this.renderTable();
 };
 
-// CookieStore.prototype.createStore = function (createNewStore) {
-//   createNewStore.preventDefault();
-//   createNewStore.stopPropagation();
-
-//   var newStoreName = createNewStore.target.name.value;
-//   var newStoreMin = parseInt(createNewStore.target.min.value);
-//   var newStoreMax = parseInt(createNewStore.target.max.value);
-//   var newStoreCookieAvg = parseInt(createNewStore.target.newStoreCookieAvg.value);
-//   console.log(newStoreName, newStoreMin, newStoreMax, newStoreCookieAvg);
-//   new CookieStore(newStoreName, newStoreMin, newStoreMax, newStoreCookieAvg);
-//   CookieStore.prototype.renderTable();
-// };
-
 var createStore = function (createNewStore) {
   createNewStore.preventDefault();
   createNewStore.stopPropagation();
@@ -37,8 +23,9 @@ var createStore = function (createNewStore) {
   var newStoreMin = parseInt(createNewStore.target.min.value);
   var newStoreMax = parseInt(createNewStore.target.max.value);
   var newStoreCookieAvg = parseInt(createNewStore.target.newStoreCookieAvg.value);
+  var hoursOpen = hoursArray.length - 1;
   console.log(newStoreName, newStoreMin, newStoreMax, newStoreCookieAvg);
-  new CookieStore(newStoreName, newStoreMin, newStoreMax, newStoreCookieAvg);
+  new CookieStore(newStoreName, newStoreMin, newStoreMax, newStoreCookieAvg, hoursOpen);
 };
 
 storeForm.addEventListener('submit', createStore);
