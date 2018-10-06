@@ -13,11 +13,16 @@ var CookieStore = function (name, minCustomers, maxCustomers, avgCookiePerCustom
   this.totalSales = 0;
   this.hoursOpen = hoursOfOperation;
   this.renderTable();
+  allStores.push(this);
 };
 
 var createStore = function (createNewStore) {
   createNewStore.preventDefault();
   createNewStore.stopPropagation();
+
+  // Remove existing footer total
+  var tempFooter = document.getElementById('tableFooter');
+  tempFooter.parentElement.removeChild(tempFooter);
 
   var newStoreName = createNewStore.target.name.value;
   var newStoreMin = parseInt(createNewStore.target.min.value);
@@ -25,9 +30,17 @@ var createStore = function (createNewStore) {
   var newStoreCookieAvg = parseInt(createNewStore.target.newStoreCookieAvg.value);
   var hoursOpen = hoursArray.length - 1;
   console.log(newStoreName, newStoreMin, newStoreMax, newStoreCookieAvg, hoursOpen);
-  // new CookieStore(newStoreName, newStoreMin, newStoreMax, newStoreCookieAvg, hoursOpen);
+  new CookieStore(newStoreName, newStoreMin, newStoreMax, newStoreCookieAvg, hoursOpen);
+
+  // Re-create updated footer total
+  var existingTable = document.getElementById('table');
+  var newFooter = document.createElement('tfoot');
+  newFooter.setAttribute('id', 'tableFooter');
+  existingTable.appendChild(newFooter);
+
+  renderTableFooter();
+
   // allStores.push(new CookieStore(newStoreName, newStoreMin, newStoreMax, newStoreCookieAvg, hoursOpen));
-  allStores.push(this);
 
   // document.getElementById('table').deleteTFoot();
   // document.getElementById('table').createTFoot('tableFooter');
