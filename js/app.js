@@ -24,8 +24,14 @@ var createStore = function (createNewStore) {
   var newStoreMax = parseInt(createNewStore.target.max.value);
   var newStoreCookieAvg = parseInt(createNewStore.target.newStoreCookieAvg.value);
   var hoursOpen = hoursArray.length - 1;
-  console.log(newStoreName, newStoreMin, newStoreMax, newStoreCookieAvg);
-  new CookieStore(newStoreName, newStoreMin, newStoreMax, newStoreCookieAvg, hoursOpen);
+  console.log(newStoreName, newStoreMin, newStoreMax, newStoreCookieAvg, hoursOpen);
+  // new CookieStore(newStoreName, newStoreMin, newStoreMax, newStoreCookieAvg, hoursOpen);
+  // allStores.push(new CookieStore(newStoreName, newStoreMin, newStoreMax, newStoreCookieAvg, hoursOpen));
+  allStores.push(this);
+
+  // document.getElementById('table').deleteTFoot();
+  // document.getElementById('table').createTFoot('tableFooter');
+  // renderTableFooter();
 };
 
 storeForm.addEventListener('submit', createStore);
@@ -83,7 +89,7 @@ CookieStore.prototype.renderTable = function() {
   cookieTableElement.appendChild(tableRowElement);
 };
 
-var renderTableFooter = function() {
+var renderTableFooter = function() {  
   var totalTotal = 0;
   var cookiesTotalArray = [];
 
